@@ -1,0 +1,18 @@
+body {
+    background-color: hsl(99, 14%, 51%);
+}
+
+header {
+    text-align: center;
+}
+
+
+/* aspect ratio: (5:3) */
+#game-container {
+    width: 900px;
+    height: 540px;
+    
+    margin: auto;
+
+    background-color: rgb(59, 59, 59);
+}
