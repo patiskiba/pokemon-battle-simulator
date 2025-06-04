@@ -16,3 +16,7 @@ header {
 
     background-color: rgb(59, 59, 59);
 }
+
+#enemyPokemonSprite {
+    width: 200px;
+}
