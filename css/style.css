@@ -1,5 +1,6 @@
 body {
     background-color: hsl(99, 14%, 51%);
+    font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
 header {
@@ -36,7 +37,32 @@ header {
     background-color: #101010;
 }
 
-.menuText {
+#menu-left-side {
+    position: absolute;
+    height: 100%;
+    bottom: 0;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#left-side-text-box {
+    height: 148px;
+    width: 418px;
+    border: white solid 2px;
+    border-radius: 16px;
+    overflow:scroll;
+    background-color: #303030;
+    box-shadow: #101010 5px 5px 10px inset;
+}
+
+#menu-dynamic-text {
+    font-size: 1.5rem;
+    margin: 24px;
+}
+
+.menuTextColor {
     color: white;
 }
 
