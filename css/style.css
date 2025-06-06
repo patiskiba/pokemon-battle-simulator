@@ -17,6 +17,7 @@ header {
     margin: auto;
 
     background-color: rgb(59, 59, 59);
+    
 }
 
 #battlefield-container {
@@ -41,7 +42,7 @@ header {
     position: absolute;
     height: 100%;
     bottom: 0;
-    width: 50%;
+    width: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,10 +50,11 @@ header {
 
 #left-side-text-box {
     height: 148px;
-    width: 418px;
+    width: 508px;
     border: white solid 2px;
     border-radius: 16px;
     overflow:scroll;
+    overflow: hidden;
     background-color: #303030;
     box-shadow: #101010 5px 5px 10px inset;
 }
@@ -62,8 +64,43 @@ header {
     margin: 24px;
 }
 
+#menu-right-side {
+    position: absolute;
+    height: 100%;
+    bottom: 0;
+    right: 0;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#right-side-buttons-container {
+    height: 148px;
+    width: 328px;
+}
+
 .menuTextColor {
     color: white;
+}
+
+.menuButton {
+    font-size: 1.25rem;
+    
+    border-radius: 16px;
+    border: white 2px solid;
+    display: flex;
+    align-items: center;
+    padding-left: 24px;
+    font-weight: 300;
+}
+
+#smaller-buttons-container {
+    display: flex;
+}
+
+.smallerMenuButton {
+    
 }
 
 #enemyPokemonSprite {
