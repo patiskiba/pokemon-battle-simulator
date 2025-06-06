@@ -62,6 +62,7 @@ header {
 #menu-dynamic-text {
     font-size: 1.5rem;
     margin: 24px;
+    font-weight: 300;
 }
 
 #menu-right-side {
@@ -86,21 +87,24 @@ header {
 
 .menuButton {
     font-size: 1.25rem;
-    
+    height: 66px;
     border-radius: 16px;
     border: white 2px solid;
     display: flex;
     align-items: center;
-    padding-left: 24px;
-    font-weight: 300;
+    justify-content: center;
+    font-weight: 600;
+    
 }
 
 #smaller-buttons-container {
     display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
 }
 
 .smallerMenuButton {
-    
+    width: 156px;
 }
 
 #enemyPokemonSprite {
