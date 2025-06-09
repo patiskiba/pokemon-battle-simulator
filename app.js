@@ -4,7 +4,7 @@ const MAX_POKEMON_PER_SIDE = 3;
 
 const url = "https://pokeapi.co/api/v2/pokemon/";
 
-let enemyPokemonSprite = document.getElementById("enemyPokemonSprite");
+let enemyPokemonSprite = document.getElementById("enemy-pokemon-sprite");
 console.log(enemyPokemonSprite);
 
 class Pokemon {

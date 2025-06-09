@@ -20,9 +20,28 @@
         <div id="game-container">
 
             <div id="battlefield-container">
-                <div id="enemyPokemonSpriteContainer" class="pokemonSpriteContainer">
-                    <img src="" id="enemyPokemonSprite" alt="The enemy pokemon sprite.">
+                <div id="battlefield-enemy-side">
+                    <div class="pokemonInfoBox">
+                        <div class="infoBoxTop">
+                            <p id="current-enemy-name" class="currentName">Milotic</p>
+                            <p id="current-enemy-hp-total" class="currentTotalHP"><span id="current-enemy-hp-actual" class="currentActualHP">329</span>/329</p>
+                        </div>
+                        <div class="hpBar">
+                            <div id="enemy-green-bar" class="greenBar">
+
+                            </div>
+                        </div>
+                        <p id="enemy-status-condition" class="statusCondition"></p>
+                    </div>
+                    <div id="enemy-pokemon-sprite-container" class="pokemonSpriteContainer">
+                        <img src="" id="enemy-pokemon-sprite" alt="The enemy pokemon sprite.">
+                    </div>
                 </div>
+                <div id="battlefield-player-side">
+                    <div id="player-pokemon-sprite-container" class="pokemonSpriteContainer">
+                        <img src="" id="" alt="">
+                    </div>
+                </div>  
             </div>
 
             <div id="menu-container">
