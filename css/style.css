@@ -31,11 +31,17 @@ header {
     background: #8c8c8c;
     background: linear-gradient(180deg, rgba(140, 140, 140, 1) 0%, rgba(207, 207, 207, 1) 51%, rgba(242, 242, 242, 1) 100%);
 }
+.battlefieldSide {
+    display: flex;
+    flex-direction:row;
+    justify-content:space-evenly
+}
 
 
 /* Pokemon info box */
 .pokemonInfoBox {
     max-width: 300px;
+    max-height: fit-content;
     padding: 8px 12px;
     border-radius: 16px 16px 4px 16px;
     border: #101010 solid 2px;
