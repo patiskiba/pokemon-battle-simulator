@@ -26,40 +26,46 @@ class PokemonObject {
 }
 
 async function addPokemonToEnemyList() {
-    for (let i = 1; i <= MAX_POKEMON_PER_SIDE; i++) {
-        
-        if (i == 1) {
-            pokemonName = "pikachu";
-            
-        } else if (i == 2) {
-            pokemonName = "rayquaza";
-            
-        } else if (i == 3) {
-            pokemonName = "milotic"
-            
-        } 
-
-        let endpoint = url + pokemonName;
-
-        try {
-        const response = await fetch(endpoint);
-        const data = await response.json();
-        
-        
-        let sprite = data.sprites.front_default;
-        enemyPokemonSprite.src = sprite;
-        
     
         
-        
+        // j represents the place in the array of team starting at 0
+        for (let j = 0; j < MAX_POKEMON_PER_SIDE; j++) {
 
-        
-        console.log(`Enemy pokemon list: ${enemyPokemonList}`);
-        
+            // i represents the # pokemon starting at 1
+    for (let i = 1; i <= MAX_POKEMON_PER_SIDE; i++) {
 
-        } catch (error) {
-        console.error('Error fetching Pokemon:', error);
+            if (i == 1) {
+            pokemonName = "pikachu";
+            
+            } else if (i == 2) {
+                pokemonName = "rayquaza";
+                
+            } else if (i == 3) {
+                pokemonName = "milotic"
+                
+            } 
+
+            let endpoint = url + pokemonName;
+
+            try {
+            const response = await fetch(endpoint);
+            const data = await response.json();
+            
+            let sprite = data.sprites.front_default;
+            enemyPokemonSprite.src = sprite;
+            
+            
+            enemyPokemonList.push(new PokemonObject(data));
+            
+
+            
+            
+
+            } catch (error) {
+            console.error('Error fetching Pokemon:', error);
+            }
         }
+        return enemyPokemonList[j];
     }
 }
 
@@ -109,7 +115,10 @@ async function addPokemonToPlayerList() {
 
 addPokemonToEnemyList();
 addPokemonToPlayerList();
+
+console.log("Enemy list: ", enemyPokemonList);
 console.log("Player list: ", playerPokemonList);
+
         
 
 
