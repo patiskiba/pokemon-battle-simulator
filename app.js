@@ -9,12 +9,7 @@ console.log(enemyPokemonSprite);
 
 let playerPokemonSprite = document.getElementById("player-pokemon-sprite");
 
-class Pokemon {
-    constructor(name) {
-        this.name = name;
-        this
-    }
-}
+
 
 let pokemonName;
 
@@ -23,10 +18,13 @@ async function addPokemonToEnemyList() {
         
         if (i == 1) {
             pokemonName = "pikachu";
+            enemyPokemonList.push(pokemonName);
         } else if (i == 2) {
             pokemonName = "rayquaza";
+            enemyPokemonList.push(pokemonName);
         } else if (i == 3) {
             pokemonName = "milotic"
+            enemyPokemonList.push(pokemonName);
         } 
 
         let endpoint = url + pokemonName;
@@ -35,11 +33,16 @@ async function addPokemonToEnemyList() {
         const response = await fetch(endpoint);
         const data = await response.json();
         console.log(data);
+        
         let sprite = data.sprites.front_default;
         enemyPokemonSprite.src = sprite;
         
+    
+        
         
 
+        
+        console.log(`Enemy pokemon list: ${enemyPokemonList}`);
         
 
         } catch (error) {
@@ -53,10 +56,13 @@ async function addPokemonToPlayerList() {
         
         if (i == 1) {
             pokemonName = "gardevoir";
+            playerPokemonList.push(pokemonName);
         } else if (i == 2) {
             pokemonName = "garchomp";
+            playerPokemonList.push(pokemonName);
         } else if (i == 3) {
-            pokemonName = "venasaur"
+            pokemonName = "venusaur"
+            playerPokemonList.push(pokemonName);
         } 
 
         let endpoint = url + pokemonName;
@@ -69,7 +75,7 @@ async function addPokemonToPlayerList() {
         playerPokemonSprite.src = sprite;
         
         
-
+        console.log(`Player pokemon list: ${playerPokemonList}`);
         
 
         } catch (error) {
@@ -80,6 +86,10 @@ async function addPokemonToPlayerList() {
 
 addPokemonToEnemyList();
 addPokemonToPlayerList();
+
+        
+
+
 
 // fetch(endpoint)
 //     .then(response => {
