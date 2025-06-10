@@ -34,7 +34,10 @@ header {
 .battlefieldSide {
     display: flex;
     flex-direction:row;
-    justify-content:space-evenly
+    justify-content:space-evenly;
+}
+#battlefield-player-side {
+    flex-direction: row-reverse;
 }
 
 
@@ -43,9 +46,19 @@ header {
     max-width: 300px;
     max-height: fit-content;
     padding: 8px 12px;
-    border-radius: 16px 16px 4px 16px;
     border: #101010 solid 2px;
     background-color: #ede2d8;
+}
+
+#enemy-info-box {
+    max-height: 100px;
+    margin-top: 8px;
+    border-radius: 16px 16px 4px 16px;
+}
+
+#player-info-box {
+    margin-top: 40px;
+    border-radius: 16px 16px 16px 4px;
 }
 
 .pokemonInfoBox p {
@@ -65,7 +78,7 @@ header {
 .currentTotalHP {
     font-weight: 200;
 }
-
+/* HP Bar resprents ENTIRE bar, green bar respresents pokemon's current HP. */
 .hpBar {
     height: 30px;
     width: 300px;
@@ -79,6 +92,9 @@ header {
     width: 100%;
     border-radius: 14px;
     background-color: #00d200;
+}
+#enemy-hp-bar {
+    height: 24px;
 }
 
 .statusCondition {
@@ -168,5 +184,11 @@ header {
 }
 
 #enemy-pokemon-sprite {
-    width: 200px;
+    margin-top: 16px;
+    height: 160px;
+}
+
+#player-pokemon-sprite {
+    width: 300px;
+    
 }

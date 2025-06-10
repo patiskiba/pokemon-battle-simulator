@@ -7,10 +7,12 @@ const url = "https://pokeapi.co/api/v2/pokemon/";
 let enemyPokemonSprite = document.getElementById("enemy-pokemon-sprite");
 console.log(enemyPokemonSprite);
 
+let playerPokemonSprite = document.getElementById("player-pokemon-sprite");
+
 class Pokemon {
     constructor(name) {
         this.name = name;
-
+        this
     }
 }
 
@@ -46,7 +48,38 @@ async function addPokemonToEnemyList() {
     }
 }
 
-addPokemonToEnemyList()
+async function addPokemonToPlayerList() {
+    for (let i = 1; i <= MAX_POKEMON_PER_SIDE; i++) {
+        
+        if (i == 1) {
+            pokemonName = "gardevoir";
+        } else if (i == 2) {
+            pokemonName = "garchomp";
+        } else if (i == 3) {
+            pokemonName = "venasaur"
+        } 
+
+        let endpoint = url + pokemonName;
+
+        try {
+        const response = await fetch(endpoint);
+        const data = await response.json();
+        console.log(data);
+        let sprite = data.sprites.back_default;
+        playerPokemonSprite.src = sprite;
+        
+        
+
+        
+
+        } catch (error) {
+        console.error('Error fetching Pokemon:', error);
+        }
+    }
+}
+
+addPokemonToEnemyList();
+addPokemonToPlayerList();
 
 // fetch(endpoint)
 //     .then(response => {
