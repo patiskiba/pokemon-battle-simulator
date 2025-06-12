@@ -4,13 +4,19 @@ const MAX_POKEMON_PER_SIDE = 3;
 
 const url = "https://pokeapi.co/api/v2/pokemon/";
 
+
+//! Enemy DOM
 const enemyPokemonName = document.getElementById("current-enemy-name");
 const enemyPokemonSprite = document.getElementById("enemy-pokemon-sprite");
 const enemyPokemonBaseHP = document.getElementById("enemy-base-hp");
 
-let playerPokemonSprite = document.getElementById("player-pokemon-sprite");
 
 
+
+//! Player DOM
+const playerPokemonName = document.getElementById("current-player-name");
+const playerPokemonSprite = document.getElementById("player-pokemon-sprite");
+const playerPokemonBaseHP = document.getElementById("player-base-hp");
 
 // let pokemonName;
 
@@ -43,9 +49,11 @@ class PokemonObject {
 // }
 
 let charmander = "charmander";
+let piplup = "piplup";
 let milotic = "milotic";
 
 let currentEnemyPokemon = charmander;
+let currentPlayerPokemon = piplup;
 
 function fetchEnemyPokemon(pokemonName) {
     fetch(url + pokemonName)
@@ -81,7 +89,42 @@ function fetchEnemyPokemon(pokemonName) {
         });
     }
 
+function fetchPlayerPokemon(pokemonName) {
+    fetch(url + pokemonName)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Pokemon not found!");
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        const name = data.name;
+        const sprite = data.sprites.back_default;
+        const cry = data.cries.latest;
+          // Get HP from stats
+        const hpStat = data.stats.find(stat => stat.stat.name === "hp");
+        const hp = hpStat ? hpStat.base_stat * 2 : "N/A";
+
+          // Display this data in the DOM
+        playerPokemonName.textContent = name.replace(/^./, name[0].toUpperCase());
+        playerPokemonSprite.src = sprite;
+        playerPokemonBaseHP.textContent = hp;
+
+        //cry plays when sprite clicked
+        playerPokemonSprite.addEventListener("click", () => {
+            let cryAudio = new Audio(cry);
+            cryAudio.play();
+        });
+
+        })
+        .catch(error => {
+        console.error("Error fetching Pokemon:", error);
+        });
+    }
+
 fetchEnemyPokemon(currentEnemyPokemon);
+fetchPlayerPokemon(currentPlayerPokemon);
 
 
 
