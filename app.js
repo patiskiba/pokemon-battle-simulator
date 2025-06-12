@@ -4,8 +4,9 @@ const MAX_POKEMON_PER_SIDE = 3;
 
 const url = "https://pokeapi.co/api/v2/pokemon/";
 
-let enemyPokemonSprite = document.getElementById("enemy-pokemon-sprite");
-console.log(enemyPokemonSprite);
+const enemyPokemonName = document.getElementById("current-enemy-name");
+const enemyPokemonSprite = document.getElementById("enemy-pokemon-sprite");
+const enemyPokemonBaseHP = document.getElementById("enemy-base-hp");
 
 let playerPokemonSprite = document.getElementById("player-pokemon-sprite");
 
@@ -41,23 +42,38 @@ class PokemonObject {
 //             }
 // }
 
+let charmander = "charmander";
+let milotic = "milotic";
 
+let currentEnemyPokemon = charmander;
 
-let currentPokemon = "charmander";
-let pokemon = fetch(url + currentPokemon);
+function fetchEnemyPokemon(pokemonName) {
+    fetch(url + pokemonName)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Pokemon not found!");
+            }
+            return response.json();
+        })
+        .then(data => {
+        const name = data.name;
+        const sprite = data.sprites.front_default;
+          // Get HP from stats
+        const hpStat = data.stats.find(stat => stat.stat.name === "hp");
+        const hp = hpStat ? hpStat.base_stat : "N/A";
 
-pokemon
-    .then((response) => {
-        console.log(response);
-        return response.json();
-    })
-    .then((data) => {
-        console.log(data);
-        const charmander = new PokemonObject(data);
-        console.log(charmander);
-        return charmander;
-    });
-    
+          // Display this data in the DOM
+        enemyPokemonName.textContent = name;
+        enemyPokemonSprite.src = sprite;
+        console.log(enemyPokemonSprite.src)
+        document.getElementById("pokemon-hp").textContent = `HP: ${hp}`;
+        })
+        .catch(error => {
+        console.error("Error fetching Pokemon:", error);
+        });
+    }
+
+fetchEnemyPokemon(currentEnemyPokemon);
 
 
 
