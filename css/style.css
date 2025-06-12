@@ -28,8 +28,8 @@ header {
     height: 360px;
     width: 100%;
     /* background gradient */
-    background: #8c8c8c;
-    background: linear-gradient(180deg, rgba(140, 140, 140, 1) 0%, rgba(207, 207, 207, 1) 51%, rgba(242, 242, 242, 1) 100%);
+    background: #a7a7a7;
+    background: linear-gradient(180deg, #adadad 0%, rgba(207, 207, 207, 1) 51%, rgba(242, 242, 242, 1) 100%);
 }
 .battlefieldSide {
     display: flex;
