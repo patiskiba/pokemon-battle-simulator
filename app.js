@@ -29,26 +29,40 @@ class PokemonObject {
 }
 
 
-//! Get data from pokeapi for specific pokemon
-async function getPokemonData(pokemonName) {
-    let endpoint = url + pokemonName;
-    try {
-            const response = await fetch(endpoint);
-            const data = await response.json();
-            return data;
-    } catch (error) {
-            console.error('Error fetching Pokemon:', error);
-            }
+// //! Get data from pokeapi for specific pokemon and create pokemonobject
+// async function getPokemonData(pokemonName) {
+//     let endpoint = url + pokemonName;
+//     try {
+//             const response = await fetch(endpoint);
+//             const data = await response.json();
+//             return data;
+//     } catch (error) {
+//             console.error('Error fetching Pokemon:', error);
+//             }
+// }
+
+let pokemon1 = fetch(url + "charmander");
+
+pokemon1
+    .then((response) => {
+        console.log(response);
+        return response.json();
+    })
+    .then((data) => {
+        console.log(data);
+        const charmander = new PokemonObject(data);
+        console.log(charmander);
+    });
+    
+
+//! Add pokemon to list
+const addPokemonToEnemyList = (pokemon) => {
+    enemyPokemonList.push(pokemon);
+    return enemyPokemonList;
 }
 
-let charmander = getPokemonData("charmander");
-enemyPokemonList.push(charmander);
+addPokemonToEnemyList(pokemon1);
 console.log(enemyPokemonList);
-
-
-
-
-
 
 
 
