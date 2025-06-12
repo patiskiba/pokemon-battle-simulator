@@ -41,9 +41,12 @@ class PokemonObject {
 //             }
 // }
 
-let pokemon1 = fetch(url + "charmander");
 
-pokemon1
+
+let currentPokemon = "charmander";
+let pokemon = fetch(url + currentPokemon);
+
+pokemon
     .then((response) => {
         console.log(response);
         return response.json();
@@ -52,17 +55,13 @@ pokemon1
         console.log(data);
         const charmander = new PokemonObject(data);
         console.log(charmander);
+        return charmander;
     });
     
 
-//! Add pokemon to list
-const addPokemonToEnemyList = (pokemon) => {
-    enemyPokemonList.push(pokemon);
-    return enemyPokemonList;
-}
 
-addPokemonToEnemyList(pokemon1);
-console.log(enemyPokemonList);
+
+
 
 
 
