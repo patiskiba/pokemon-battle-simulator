@@ -56,17 +56,25 @@ function fetchEnemyPokemon(pokemonName) {
             return response.json();
         })
         .then(data => {
+            console.log(data);
         const name = data.name;
         const sprite = data.sprites.front_default;
+        const cry = data.cries.latest;
           // Get HP from stats
         const hpStat = data.stats.find(stat => stat.stat.name === "hp");
-        const hp = hpStat ? hpStat.base_stat : "N/A";
+        const hp = hpStat ? hpStat.base_stat * 2 : "N/A";
 
           // Display this data in the DOM
-        enemyPokemonName.textContent = name;
+        enemyPokemonName.textContent = name.replace(/^./, name[0].toUpperCase());
         enemyPokemonSprite.src = sprite;
-        console.log(enemyPokemonSprite.src)
-        document.getElementById("pokemon-hp").textContent = `HP: ${hp}`;
+        enemyPokemonBaseHP.textContent = hp;
+
+        //cry plays when sprite clicked
+        enemyPokemonSprite.addEventListener("click", () => {
+            let cryAudio = new Audio(cry);
+            cryAudio.play();
+        });
+
         })
         .catch(error => {
         console.error("Error fetching Pokemon:", error);
