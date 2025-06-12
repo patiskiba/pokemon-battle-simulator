@@ -11,8 +11,11 @@ let playerPokemonSprite = document.getElementById("player-pokemon-sprite");
 
 
 
-let pokemonName;
+// let pokemonName;
 
+
+
+//! Each pokemon is an object
 class PokemonObject {
     constructor(data) {
         this.name = data.name;
@@ -25,102 +28,171 @@ class PokemonObject {
     }
 }
 
-async function addPokemonToEnemyList() {
-    
-        
-        // j represents the place in the array of team starting at 0
-        for (let j = 0; j < MAX_POKEMON_PER_SIDE; j++) {
 
-            // i represents the # pokemon starting at 1
-    for (let i = 1; i <= MAX_POKEMON_PER_SIDE; i++) {
-
-            if (i == 1) {
-            pokemonName = "pikachu";
-            
-            } else if (i == 2) {
-                pokemonName = "rayquaza";
-                
-            } else if (i == 3) {
-                pokemonName = "milotic"
-                
-            } 
-
-            let endpoint = url + pokemonName;
-
-            try {
+//! Get data from pokeapi for specific pokemon
+async function getPokemonData(pokemonName) {
+    let endpoint = url + pokemonName;
+    try {
             const response = await fetch(endpoint);
             const data = await response.json();
-            
-            let sprite = data.sprites.front_default;
-            enemyPokemonSprite.src = sprite;
-            
-            
-            enemyPokemonList.push(new PokemonObject(data));
-            
-
-            
-            
-
-            } catch (error) {
+            return data;
+    } catch (error) {
             console.error('Error fetching Pokemon:', error);
             }
-        }
-        return enemyPokemonList[j];
-    }
 }
 
-async function addPokemonToPlayerList() {
+let charmander = getPokemonData("charmander");
+enemyPokemonList.push(charmander);
+console.log(enemyPokemonList);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// //! Add a pokemon object to each team list
+// async function addPokemonToEnemyList() {
     
         
-        // j represents the place in the array of team starting at 0
-        for (let j = 0; j < MAX_POKEMON_PER_SIDE; j++) {
+//         // j represents the place in the array of team starting at 0
+//         for (let j = 0; j < MAX_POKEMON_PER_SIDE; j++) {
 
-            // i represents the # pokemon starting at 1
-    for (let i = 1; i <= MAX_POKEMON_PER_SIDE; i++) {
+//             // i represents the # pokemon starting at 1
+//     for (let i = 1; i <= MAX_POKEMON_PER_SIDE; i++) {
 
-            if (i == 1) {
-            pokemonName = "gardevoir";
+//             if (i == 1) {
+//             pokemonName = "pikachu";
             
-            } else if (i == 2) {
-                pokemonName = "garchomp";
+//             } else if (i == 2) {
+//                 pokemonName = "rayquaza";
                 
-            } else if (i == 3) {
-                pokemonName = "venusaur"
+//             } else if (i == 3) {
+//                 pokemonName = "milotic"
                 
-            } 
+                
+//             } 
 
-            let endpoint = url + pokemonName;
+//             let endpoint = url + pokemonName;
 
-            try {
-            const response = await fetch(endpoint);
-            const data = await response.json();
+//             try {
+//             const response = await fetch(endpoint);
+//             const data = await response.json();
             
-            let sprite = data.sprites.back_default;
-            playerPokemonSprite.src = sprite;
-            
-            
-            playerPokemonList.push(new PokemonObject(data));
-            
-
+//             let sprite = data.sprites.front_default;
+//             enemyPokemonSprite.src = sprite;
             
             
+//             enemyPokemonList.push(new PokemonObject(data));
+            
+            
 
-            } catch (error) {
-            console.error('Error fetching Pokemon:', error);
-            }
-        }
-        return playerPokemonList[j];
-    }
-}
+            
+            
 
-addPokemonToEnemyList();
-addPokemonToPlayerList();
+//             } catch (error) {
+//             console.error('Error fetching Pokemon:', error);
+//             }
+//         }
+//         return enemyPokemonList[j];
+//     }
+// }
 
-console.log("Enemy list: ", enemyPokemonList);
-console.log("Player list: ", playerPokemonList);
-
+// async function addPokemonToPlayerList() {
+    
         
+//         // j represents the place in the array of team starting at 0
+//         for (let j = 0; j < MAX_POKEMON_PER_SIDE; j++) {
 
+//             // i represents the # pokemon starting at 1
+//     for (let i = 1; i <= MAX_POKEMON_PER_SIDE; i++) {
+
+//             if (i == 1) {
+//             pokemonName = "gardevoir";
+            
+//             } else if (i == 2) {
+//                 pokemonName = "garchomp";
+                
+//             } else if (i == 3) {
+//                 pokemonName = "venusaur"
+                
+//             } 
+
+//             let endpoint = url + pokemonName;
+
+//             try {
+//             const response = await fetch(endpoint);
+//             const data = await response.json();
+            
+//             let sprite = data.sprites.back_default;
+//             playerPokemonSprite.src = sprite;
+            
+            
+//             playerPokemonList.push(new PokemonObject(data));
+            
+
+            
+            
+
+//             } catch (error) {
+//             console.error('Error fetching Pokemon:', error);
+//             }
+//         }
+//         return playerPokemonList[j];
+//     }
+// }
+
+//! Pick moves and ability of each pokemon object
+// Declare a variable for each pokemon object so it is easy to use
+
+
+
+// choose ability
+// choose moveset
+
+
+
+
+
+
+//! Make first pokemon in list be current pokemon (the pokemon on screen)
+
+
+
+
+
+
+
+//! Get correct current pokemon information on screen (name, hp, etc)
+
+// addPokemonToEnemyList();
+// addPokemonToPlayerList();
+
+// console.log("Enemy list: ", enemyPokemonList);
+// console.log("Player list: ", playerPokemonList);
+
+// console.log()
+
+// milotic = enemyPokemonList[2];
+// console.log(milotic);        
 
 
 // fetch(endpoint)
