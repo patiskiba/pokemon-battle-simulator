@@ -5,6 +5,18 @@ const MAX_POKEMON_PER_SIDE = 3;
 const url = "https://pokeapi.co/api/v2/pokemon/";
 
 
+//! Menu DOM
+const fightButton = document.getElementById("fight-button");
+const pokemonButton = document.getElementById("pokemon-button");
+const helpButton = document.getElementById("help-button");
+
+//! Function that changes game text (plug in text as arg)
+function showDynamicText(string) {
+    const menuDynamicText = document.getElementById("menu-dynamic-text");
+    menuDynamicText.textContent = string;
+}
+showDynamicText("Hello World.");
+
 //! Enemy DOM
 const enemyPokemonName = document.getElementById("current-enemy-name");
 const enemyPokemonSprite = document.getElementById("enemy-pokemon-sprite");
