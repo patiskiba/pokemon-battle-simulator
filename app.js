@@ -80,6 +80,7 @@ function fetchEnemyPokemon(pokemonName) {
         //cry plays when sprite clicked
         enemyPokemonSprite.addEventListener("click", () => {
             let cryAudio = new Audio(cry);
+            cryAudio.volume = 0.15;
             cryAudio.play();
         });
 
@@ -114,6 +115,7 @@ function fetchPlayerPokemon(pokemonName) {
         //cry plays when sprite clicked
         playerPokemonSprite.addEventListener("click", () => {
             let cryAudio = new Audio(cry);
+            cryAudio.volume = 0.15;
             cryAudio.play();
         });
 
