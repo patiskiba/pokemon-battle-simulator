@@ -50,6 +50,8 @@ class PokemonObject {
 
 // //! Get data from pokeapi for specific pokemon and create pokemonobject
 
+
+
 let charmander = "charmander";
 let piplup = "piplup";
 let milotic = "milotic";
@@ -105,11 +107,18 @@ function fetchPlayerPokemon(pokemonName) {
         const name = data.name;
         const sprite = data.sprites.back_default;
         const cry = data.cries.latest;
-          // Get HP from stats
+        // Get HP from stats
         const hpStat = data.stats.find(stat => stat.stat.name === "hp");
         const hp = hpStat ? hpStat.base_stat * 2 : "N/A";
+        const moves = data.moves;
+        // Select predefined moveset to show up for each (player) pokemon
+        if (pokemonName === "piplup") {
+            let availableMoves = [];
+            availableMoves = [moves[0]["move"]["name"], moves[9]["move"]["name"], moves[12]["move"]["name"]];
+            console.log(availableMoves);
+        }
 
-          // Display this data in the DOM
+        // Display this data in the DOM
         playerPokemonName.textContent = name.replace(/^./, name[0].toUpperCase());
         playerPokemonSprite.src = sprite;
         playerPokemonBaseHP.textContent = hp;
