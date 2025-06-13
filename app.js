@@ -9,13 +9,18 @@ const url = "https://pokeapi.co/api/v2/pokemon/";
 const fightButton = document.getElementById("fight-button");
 const pokemonButton = document.getElementById("pokemon-button");
 const helpButton = document.getElementById("help-button");
+const menuDynamicText = document.getElementById("menu-dynamic-text");
 
 //! Function that changes game text (plug in text as arg)
 function showDynamicText(string) {
-    const menuDynamicText = document.getElementById("menu-dynamic-text");
     menuDynamicText.textContent = string;
 }
 showDynamicText("Hello World.");
+
+//! Function that displays your moveset, to be called when fight button clicked
+//? We define this leftSideTextBox because this is the parent element/div that holds either the dynamic game text (p) or the moveset buttons depending on what we amend to it. (By default, contains p tag of dynamic game text)
+const leftSideTextBox = document.getElementById("left-side-text-box");
+
 
 //! Enemy DOM
 const enemyPokemonName = document.getElementById("current-enemy-name");
@@ -112,8 +117,8 @@ function fetchPlayerPokemon(pokemonName) {
         const hp = hpStat ? hpStat.base_stat * 2 : "N/A";
         const moves = data.moves;
         // Select predefined moveset to show up for each (player) pokemon
+        let availableMoves = [];
         if (pokemonName === "piplup") {
-            let availableMoves = [];
             availableMoves = [moves[0]["move"]["name"], moves[9]["move"]["name"], moves[12]["move"]["name"]];
             console.log(availableMoves);
         }
@@ -122,6 +127,23 @@ function fetchPlayerPokemon(pokemonName) {
         playerPokemonName.textContent = name.replace(/^./, name[0].toUpperCase());
         playerPokemonSprite.src = sprite;
         playerPokemonBaseHP.textContent = hp;
+
+
+        // Show your moveset when fight button clicked
+        fightButton.addEventListener("click", () => {
+            showPlayerMoveset();
+            console.log("Fight button clicked.");
+        });
+        function showPlayerMoveset() {
+            leftSideTextBox.removeChild(menuDynamicText);
+            
+            availableMoves.forEach(move => {
+                let moveButton = document.createElement("button");
+                moveButton.textContent = move;
+                leftSideTextBox.appendChild(moveButton);
+            });
+            
+        }
 
         //cry plays when sprite clicked
         playerPokemonSprite.addEventListener("click", () => {
