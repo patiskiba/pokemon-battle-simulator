@@ -134,6 +134,16 @@ header {
     box-shadow: #101010 5px 5px 10px inset;
 }
 
+#left-side-text-box button {
+    font-size: 1.5rem;
+    margin: 24px;
+    font-weight: 300;
+    background: #ede2d800;
+    border: none;
+    color: white;
+    text-decoration: underline;
+}
+
 #menu-dynamic-text {
     font-size: 1.5rem;
     margin: 24px;
