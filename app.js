@@ -27,6 +27,7 @@ const leftSideTextBox = document.getElementById("left-side-text-box");
 const enemyPokemonName = document.getElementById("current-enemy-name");
 const enemyPokemonSprite = document.getElementById("enemy-pokemon-sprite");
 const enemyPokemonBaseHP = document.getElementById("enemy-base-hp");
+const enemyPokemonRemainingHP = document.getElementById("current-enemy-hp-actual");
 
 
 
@@ -35,8 +36,9 @@ const enemyPokemonBaseHP = document.getElementById("enemy-base-hp");
 const playerPokemonName = document.getElementById("current-player-name");
 const playerPokemonSprite = document.getElementById("player-pokemon-sprite");
 const playerPokemonBaseHP = document.getElementById("player-base-hp");
+const playerPokemonRemainingHP = document.getElementById("current-player-hp-actual");
 
-// let pokemonName;
+
 
 
 
@@ -79,8 +81,12 @@ function fetchEnemyPokemon(pokemonName) {
         const sprite = data.sprites.front_default;
         const cry = data.cries.latest;
           // Get HP from stats
+        
         const hpStat = data.stats.find(stat => stat.stat.name === "hp");
-        const hp = hpStat ? hpStat.base_stat * 2 : "N/A";
+        const hp = hpStat ? hpStat.base_stat + 10 : "N/A"; //Base HP
+        const startingHP = hp; //Starting HP equals base HP 
+        const remainingHP = startingHP; // DISPLAYED starting/remaining HP
+        
         const moves = data.moves;
         // Select predefined moveset for each (enemy) pokemon
         let availableMoves = [];
@@ -93,6 +99,7 @@ function fetchEnemyPokemon(pokemonName) {
         enemyPokemonName.textContent = name.replace(/^./, name[0].toUpperCase());
         enemyPokemonSprite.src = sprite;
         enemyPokemonBaseHP.textContent = hp;
+        enemyPokemonRemainingHP.textContent = remainingHP;
 
         //cry plays when sprite clicked
         enemyPokemonSprite.addEventListener("click", () => {
@@ -123,7 +130,10 @@ function fetchPlayerPokemon(pokemonName) {
         const cry = data.cries.latest;
         // Get HP from stats
         const hpStat = data.stats.find(stat => stat.stat.name === "hp");
-        const hp = hpStat ? hpStat.base_stat * 2 : "N/A";
+        const hp = hpStat ? hpStat.base_stat + 10 : "N/A"; //Base HP
+        const startingHP = hp; //Starting HP equals base HP 
+        const remainingHP = startingHP; // DISPLAYED starting/remaining HP
+
         const moves = data.moves;
         // Select predefined moveset to show up for each (player) pokemon
         let availableMoves = [];
@@ -136,6 +146,7 @@ function fetchPlayerPokemon(pokemonName) {
         playerPokemonName.textContent = name.replace(/^./, name[0].toUpperCase());
         playerPokemonSprite.src = sprite;
         playerPokemonBaseHP.textContent = hp;
+        playerPokemonRemainingHP.textContent = remainingHP;
 
         // Default dynamic text
         showDynamicText(`What will ${pokemonName.replace(/^./, name[0].toUpperCase())} do?`);
