@@ -14,6 +14,7 @@ const menuDynamicText = document.getElementById("menu-dynamic-text");
 //! Function that changes game text (plug in text as arg)
 function showDynamicText(string) {
     menuDynamicText.textContent = string;
+    console.log(string);
 }
 showDynamicText("Hello World.");
 
@@ -115,6 +116,7 @@ function fetchPlayerPokemon(pokemonName) {
             return response.json();
         })
         .then(data => {
+            
             console.log(data);
         const name = data.name;
         const sprite = data.sprites.back_default;
@@ -129,12 +131,14 @@ function fetchPlayerPokemon(pokemonName) {
             availableMoves = [moves[0]["move"]["name"], moves[9]["move"]["name"], moves[12]["move"]["name"]];
             console.log(availableMoves);
         }
-
+        
         // Display this data in the DOM
         playerPokemonName.textContent = name.replace(/^./, name[0].toUpperCase());
         playerPokemonSprite.src = sprite;
         playerPokemonBaseHP.textContent = hp;
 
+        // Default dynamic text
+        showDynamicText(`What will ${pokemonName.replace(/^./, name[0].toUpperCase())} do?`);
 
         // Show your moveset when fight button clicked
         fightButton.addEventListener("click", () => {
@@ -148,8 +152,24 @@ function fetchPlayerPokemon(pokemonName) {
                 let moveButton = document.createElement("button");
                 moveButton.textContent = move;
                 leftSideTextBox.appendChild(moveButton);
+                // What happens when you click a move:
+                moveButton.addEventListener("click", () => {
+                    showDynamicText(`You used ${move}`);
+                    leftSideTextBox.innerHTML = '';
+                    leftSideTextBox.appendChild(menuDynamicText);
+                    showDynamicText(`${pokemonName.replace(/^./, name[0].toUpperCase())} used ${move}!`);
+                })
             });
-            
+            // Exit button
+            let exitMovesetButton = document.createElement("button");
+            exitMovesetButton.textContent = "(Exit)";
+            leftSideTextBox.appendChild(exitMovesetButton);
+            // What happens when you click the exit button:
+            exitMovesetButton.addEventListener("click", () => {
+                leftSideTextBox.innerHTML = '';
+                leftSideTextBox.appendChild(menuDynamicText);
+                showDynamicText(`What will ${pokemonName.replace(/^./, name[0].toUpperCase())} do?`);
+            });
         }
 
         //cry plays when sprite clicked
