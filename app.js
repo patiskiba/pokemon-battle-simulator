@@ -80,6 +80,13 @@ function fetchEnemyPokemon(pokemonName) {
           // Get HP from stats
         const hpStat = data.stats.find(stat => stat.stat.name === "hp");
         const hp = hpStat ? hpStat.base_stat * 2 : "N/A";
+        const moves = data.moves;
+        // Select predefined moveset for each (enemy) pokemon
+        let availableMoves = [];
+        if (pokemonName === "charmander") {
+            availableMoves = [moves[3]["move"]["name"], moves[16]["move"]["name"]];
+            console.log(availableMoves);
+        }
 
           // Display this data in the DOM
         enemyPokemonName.textContent = name.replace(/^./, name[0].toUpperCase());
