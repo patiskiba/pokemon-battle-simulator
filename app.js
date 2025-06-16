@@ -98,8 +98,7 @@ function fetchEnemyPokemon(pokemonName) {
           // Display this data in the DOM
         enemyPokemonName.textContent = name.replace(/^./, name[0].toUpperCase());
         enemyPokemonSprite.src = sprite;
-        enemyPokemonBaseHP.textContent = hp;
-        enemyPokemonRemainingHP.textContent = remainingHP;
+        
 
         //cry plays when sprite clicked
         enemyPokemonSprite.addEventListener("click", () => {
@@ -147,6 +146,9 @@ function fetchPlayerPokemon(pokemonName) {
         playerPokemonSprite.src = sprite;
         playerPokemonBaseHP.textContent = hp;
         playerPokemonRemainingHP.textContent = remainingHP;
+        enemyPokemonBaseHP.textContent = 49;
+        enemyPokemonRemainingHP.textContent = 49;
+        
 
         // Default dynamic text
         showDynamicText(`What will ${pokemonName.replace(/^./, name[0].toUpperCase())} do?`);
@@ -175,7 +177,7 @@ function fetchPlayerPokemon(pokemonName) {
                     let damageDoneThisRound = 0;
                     let damageTakenThisRound = 0;
                     let enemyMove;
-                    let tackle = "tackle";
+                    let scratch = "scratch";
                     let ember = "ember";
                     
                     if (move === "pound") {
@@ -193,7 +195,7 @@ function fetchPlayerPokemon(pokemonName) {
                     let enemyMoveRNG = Math.floor(Math.random() * 2);
                     console.log(enemyMoveRNG, "enemy move rng");
                     if (enemyMoveRNG == 0) {
-                        enemyMove = tackle;
+                        enemyMove = scratch;
                         damageTakenThisRound = 20;
                     } else {
                         enemyMove = ember;
@@ -201,6 +203,9 @@ function fetchPlayerPokemon(pokemonName) {
                     }
                     damageTakenTotal += damageTakenThisRound;
                     console.log("Total damage taken", damageTakenTotal);
+
+                    enemyPokemonRemainingHP.textContent = 49 - damageDoneTotal;
+                    playerPokemonRemainingHP.textContent = 63 - damageTakenTotal;                    
 
                     showDynamicText(`You used ${move}`);
                     leftSideTextBox.innerHTML = '';
