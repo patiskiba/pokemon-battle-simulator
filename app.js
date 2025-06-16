@@ -152,24 +152,66 @@ function fetchPlayerPokemon(pokemonName) {
         showDynamicText(`What will ${pokemonName.replace(/^./, name[0].toUpperCase())} do?`);
 
         // Show your moveset when fight button clicked
+        let damageDoneTotal = 0; 
+        let damageTakenTotal = 0;
         fightButton.addEventListener("click", () => {
             showPlayerMoveset();
             console.log("Fight button clicked.");
         });
         function showPlayerMoveset() {
+
             leftSideTextBox.removeChild(menuDynamicText);
             
             availableMoves.forEach(move => {
                 let moveButton = document.createElement("button");
                 moveButton.textContent = move;
                 leftSideTextBox.appendChild(moveButton);
-                // What happens when you click a move:
-                moveButton.addEventListener("click", () => {
+
+
+                // Define the fight function:
+                function useMoveToBeginRound() {   
+                    moveButton.addEventListener("click", () => {
+                    let baseDamage = 12;
+                    let damageDoneThisRound = 0;
+                    let damageTakenThisRound = 0;
+                    let enemyMove;
+                    let tackle = "tackle";
+                    let ember = "ember";
+                    
+                    if (move === "pound") {
+                        damageDoneThisRound = baseDamage;
+                    } else if (move === "water-gun") {
+                        damageDoneThisRound = baseDamage * 2;
+                    } else if (move === "ice-beam") {
+                        damageDoneThisRound = baseDamage / 2;
+                    }
+                    damageDoneTotal += damageDoneThisRound;
+                    console.log("Damage done this round", damageDoneThisRound);
+                    console.log("Damage done total", damageDoneTotal);
+
+                    //Enemy moves after you
+                    let enemyMoveRNG = Math.floor(Math.random() * 2);
+                    console.log(enemyMoveRNG, "enemy move rng");
+                    if (enemyMoveRNG == 0) {
+                        enemyMove = tackle;
+                        damageTakenThisRound = 20;
+                    } else {
+                        enemyMove = ember;
+                        damageTakenThisRound = 10;
+                    }
+                    damageTakenTotal += damageTakenThisRound;
+                    console.log("Total damage taken", damageTakenTotal);
+
                     showDynamicText(`You used ${move}`);
                     leftSideTextBox.innerHTML = '';
                     leftSideTextBox.appendChild(menuDynamicText);
-                    showDynamicText(`${pokemonName.replace(/^./, name[0].toUpperCase())} used ${move}!`);
+                    showDynamicText(`${pokemonName.replace(/^./, name[0].toUpperCase())} used ${move} and did ${damageDoneThisRound} damage. Enemy used ${enemyMove} and did ${damageTakenThisRound} damage.`);
                 })
+                }
+                useMoveToBeginRound();
+                // What happens when you click a move
+                // Call fight round function (you use a move and then enemy uses random move)
+                
             });
             // Exit button
             let exitMovesetButton = document.createElement("button");
@@ -177,6 +219,7 @@ function fetchPlayerPokemon(pokemonName) {
             leftSideTextBox.appendChild(exitMovesetButton);
             // What happens when you click the exit button:
             exitMovesetButton.addEventListener("click", () => {
+                
                 leftSideTextBox.innerHTML = '';
                 leftSideTextBox.appendChild(menuDynamicText);
                 showDynamicText(`What will ${pokemonName.replace(/^./, name[0].toUpperCase())} do?`);
@@ -196,7 +239,18 @@ function fetchPlayerPokemon(pokemonName) {
         });
     }
 
+
+// function setupBattle() {
+//     // Create move buttons only once both Pokémon are loaded
+// }
+
 fetchEnemyPokemon(currentEnemyPokemon);
 fetchPlayerPokemon(currentPlayerPokemon);
 
+// // The Promise.all() method returns a single Promise from a list of promises, when all promises fulfill.
+// Promise.all([fetchPlayerPokemon(currentPlayerPokemon), fetchEnemyPokemon(currentEnemyPokemon)])
+//   .then(() => {
+//     console.log('Both Pokémon ready!');
+//     setupBattle();
+//   });
 
