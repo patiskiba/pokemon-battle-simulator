@@ -179,6 +179,9 @@ function fetchPlayerPokemon(pokemonName) {
                     let enemyMove;
                     let scratch = "scratch";
                     let ember = "ember";
+                    let hitOrMiss;
+                    let hit = "(Hit)";
+                    let miss = "(Miss)";
                     
                     if (move === "pound") {
                         damageDoneThisRound = baseDamage;
