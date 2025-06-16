@@ -140,7 +140,7 @@ function fetchPlayerPokemon(pokemonName) {
             availableMoves = [moves[0]["move"]["name"], moves[9]["move"]["name"], moves[12]["move"]["name"]];
             console.log(availableMoves);
         }
-        
+    
         // Display this data in the DOM
         playerPokemonName.textContent = name.replace(/^./, name[0].toUpperCase());
         playerPokemonSprite.src = sprite;
@@ -183,6 +183,7 @@ function fetchPlayerPokemon(pokemonName) {
                     let hitOrMissRNG = Math.floor(Math.random() * 9);
                     let hit = "(Hit)";
                     let miss = "(Miss)";
+
                     
                     // the better the move, the worse the acc
                     if (move === "pound") { // pound 80% acc
@@ -212,14 +213,25 @@ function fetchPlayerPokemon(pokemonName) {
                     console.log("Damage done this round", damageDoneThisRound);
                     console.log("Damage done total", damageDoneTotal);
 
-                    //Enemy moves after you
+                    //? Enemy moves after player
                     let enemyMoveRNG = Math.floor(Math.random() * 2);
+                    let enemyHitOrMissRNG = Math.floor(Math.random() * 9);
+                    let enemyHitOrMiss;
                     console.log(enemyMoveRNG, "enemy move rng");
                     if (enemyMoveRNG == 0) {
-                        enemyMove = scratch;
-                        damageTakenThisRound = 20;
+                        enemyMove = scratch; // enemy scratch 80% acc
+                        enemyHitOrMissRNG;
+                        if (enemyHitOrMissRNG <= 7) {
+                            damageTakenThisRound = 20;
+                            enemyHitOrMiss = hit;
+                        } else {
+                            damageTakenThisRound = 0;
+                            enemyHitOrMiss = miss;
+                        }
                     } else {
-                        enemyMove = ember;
+                        enemyMove = ember; // enemy ember 100% acc
+                        enemyHitOrMissRNG;
+                        enemyHitOrMiss = hit;
                         damageTakenThisRound = 10;
                     }
                     damageTakenTotal += damageTakenThisRound;
@@ -232,7 +244,7 @@ function fetchPlayerPokemon(pokemonName) {
                     leftSideTextBox.innerHTML = '';
                     leftSideTextBox.appendChild(menuDynamicText);
                     showDynamicText(`${pokemonName.replace(/^./, name[0].toUpperCase())} used ${move} and did ${damageDoneThisRound} damage ${hitOrMiss}.
-                    Enemy used ${enemyMove} and did ${damageTakenThisRound} damage.`);
+                    Enemy used ${enemyMove} and did ${damageTakenThisRound} damage ${enemyHitOrMiss}.`);
                 })
                 }
                 useMoveToBeginRound();
