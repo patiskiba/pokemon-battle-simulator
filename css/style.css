@@ -46,8 +46,9 @@ header {
     max-width: 300px;
     max-height: fit-content;
     padding: 8px 12px;
-    border: #101010 solid 2px;
+    border: #101010 solid 3px;
     background-color: #ede2d8;
+    box-shadow: #61616162 5px 5px 15px;
 }
 
 #enemy-info-box {
