@@ -180,14 +180,32 @@ function fetchPlayerPokemon(pokemonName) {
                     let scratch = "scratch";
                     let ember = "ember";
                     let hitOrMiss;
+                    let hitOrMissRNG = Math.floor(Math.random() * 9);
                     let hit = "(Hit)";
                     let miss = "(Miss)";
                     
-                    if (move === "pound") {
-                        damageDoneThisRound = baseDamage;
-                    } else if (move === "water-gun") {
-                        damageDoneThisRound = baseDamage * 2;
-                    } else if (move === "ice-beam") {
+                    // the better the move, the worse the acc
+                    if (move === "pound") { // pound 80% acc
+                        
+                        hitOrMissRNG;
+                        if (hitOrMissRNG <= 7) {
+                            hitOrMiss = hit;
+                            damageDoneThisRound = baseDamage;
+                        } else {
+                            hitOrMiss = miss;
+                            damageDoneThisRound = 0;
+                        }
+                    } else if (move === "water-gun") { // water-gun 50% acc 
+                        hitOrMissRNG;
+                        if (hitOrMissRNG <= 4) {
+                            hitOrMiss = hit;
+                            damageDoneThisRound = baseDamage * 2;
+                        } else {
+                            hitOrMiss = miss;
+                            damageDoneThisRound = 0;
+                        }
+                    } else if (move === "ice-beam") { // ice-beam 100% acc
+                        hitOrMiss = hit; // guaranteed hit
                         damageDoneThisRound = baseDamage / 2;
                     }
                     damageDoneTotal += damageDoneThisRound;
@@ -213,7 +231,8 @@ function fetchPlayerPokemon(pokemonName) {
                     showDynamicText(`You used ${move}`);
                     leftSideTextBox.innerHTML = '';
                     leftSideTextBox.appendChild(menuDynamicText);
-                    showDynamicText(`${pokemonName.replace(/^./, name[0].toUpperCase())} used ${move} and did ${damageDoneThisRound} damage. Enemy used ${enemyMove} and did ${damageTakenThisRound} damage.`);
+                    showDynamicText(`${pokemonName.replace(/^./, name[0].toUpperCase())} used ${move} and did ${damageDoneThisRound} damage ${hitOrMiss}.
+                    Enemy used ${enemyMove} and did ${damageTakenThisRound} damage.`);
                 })
                 }
                 useMoveToBeginRound();
