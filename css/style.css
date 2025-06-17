@@ -1,10 +1,11 @@
 body {
-    background-color: hsl(99, 14%, 51%);
+    background-color: hsl(213, 28%, 19%);
     font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
 header {
     text-align: center;
+    color: rgb(200, 198, 235);
 }
 
 
@@ -15,8 +16,10 @@ header {
     height: 540px;
     
     margin: auto;
-
+    border-radius: 12px;
+    border: rgb(19, 19, 19) 6px solid;
     background-color: rgb(59, 59, 59);
+    
     
 }
 
@@ -27,6 +30,7 @@ header {
     top: 0;
     height: 360px;
     width: 100%;
+    border-radius: 12px 12px 0px 0px;
     /* background gradient */
     background: #a7a7a7;
     background: linear-gradient(180deg, #adadad 0%, rgba(207, 207, 207, 1) 51%, rgba(242, 242, 242, 1) 100%);
@@ -111,7 +115,8 @@ header {
     bottom: 0;
     height: 180px;
     width: 100%;
-    background-color: #101010;
+    border-radius: 0px 0px 8px 8px;
+    background-color: #202020;
 }
 
 #menu-left-side {
