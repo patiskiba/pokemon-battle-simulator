@@ -208,3 +208,10 @@ header {
     width: 300px;
     
 }
+
+
+
+#gameResult {
+    text-align: center;
+    color: white;
+}

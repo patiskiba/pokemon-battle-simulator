@@ -10,6 +10,7 @@ const fightButton = document.getElementById("fight-button");
 const pokemonButton = document.getElementById("pokemon-button");
 const helpButton = document.getElementById("help-button");
 const menuDynamicText = document.getElementById("menu-dynamic-text");
+const gameResultText = document.getElementById("gameResult");
 
 //! Function that changes game text (plug in text as arg)
 function showDynamicText(string) {
@@ -252,6 +253,18 @@ function fetchPlayerPokemon(pokemonName) {
                     playerHealthBar.style.width = `${playerHealthPercentage}%`;
 
 
+                    // Win/loss conditions
+                    if (damageDoneTotal >= 49) {
+                        if (damageTakenTotal >= 63) {
+                            gameResultText.textContent = "Your Piplup has fainted... You lose! :(";
+                        } else {
+                            gameResultText.textContent = "Enemy Charmander has fainted... You win! :)";
+                        }
+                    } else if (damageTakenTotal >= 63) {
+                        gameResultText.textContent = "Your Piplup has fainted... You lose! :(";
+                    }
+                    
+
                     showDynamicText(`You used ${move}`);
                     leftSideTextBox.innerHTML = '';
                     leftSideTextBox.appendChild(menuDynamicText);
@@ -291,17 +304,10 @@ function fetchPlayerPokemon(pokemonName) {
     }
 
 
-// function setupBattle() {
-//     // Create move buttons only once both Pokémon are loaded
-// }
+
 
 fetchEnemyPokemon(currentEnemyPokemon);
 fetchPlayerPokemon(currentPlayerPokemon);
 
-// // The Promise.all() method returns a single Promise from a list of promises, when all promises fulfill.
-// Promise.all([fetchPlayerPokemon(currentPlayerPokemon), fetchEnemyPokemon(currentEnemyPokemon)])
-//   .then(() => {
-//     console.log('Both Pokémon ready!');
-//     setupBattle();
-//   });
+
 
