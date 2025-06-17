@@ -28,8 +28,7 @@ const enemyPokemonName = document.getElementById("current-enemy-name");
 const enemyPokemonSprite = document.getElementById("enemy-pokemon-sprite");
 const enemyPokemonBaseHP = document.getElementById("enemy-base-hp");
 const enemyPokemonRemainingHP = document.getElementById("current-enemy-hp-actual");
-
-
+const enemyHealthBar = document.getElementById("enemy-green-bar");
 
 
 //! Player DOM
@@ -149,6 +148,8 @@ function fetchPlayerPokemon(pokemonName) {
         enemyPokemonBaseHP.textContent = 49;
         enemyPokemonRemainingHP.textContent = 49;
         
+        
+        
 
         // Default dynamic text
         showDynamicText(`What will ${pokemonName.replace(/^./, name[0].toUpperCase())} do?`);
@@ -183,6 +184,7 @@ function fetchPlayerPokemon(pokemonName) {
                     let hitOrMissRNG = Math.floor(Math.random() * 9);
                     let hit = "(Hit)";
                     let miss = "(Miss)";
+                    let enemyHealthPercentage;
 
                     
                     // the better the move, the worse the acc
@@ -212,6 +214,7 @@ function fetchPlayerPokemon(pokemonName) {
                     damageDoneTotal += damageDoneThisRound;
                     console.log("Damage done this round", damageDoneThisRound);
                     console.log("Damage done total", damageDoneTotal);
+                    
 
                     //? Enemy moves after player
                     let enemyMoveRNG = Math.floor(Math.random() * 2);
@@ -238,7 +241,12 @@ function fetchPlayerPokemon(pokemonName) {
                     console.log("Total damage taken", damageTakenTotal);
 
                     enemyPokemonRemainingHP.textContent = 49 - damageDoneTotal;
-                    playerPokemonRemainingHP.textContent = 63 - damageTakenTotal;                    
+                    playerPokemonRemainingHP.textContent = 63 - damageTakenTotal;
+                    
+                    enemyHealthPercentage = 100 - ((damageDoneTotal/49)*100);
+                    
+                    enemyHealthBar.style.width = `${enemyHealthPercentage}%`;
+                    console.log(enemyHealthPercentage);
 
                     showDynamicText(`You used ${move}`);
                     leftSideTextBox.innerHTML = '';
