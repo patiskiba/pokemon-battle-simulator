@@ -36,6 +36,7 @@ const playerPokemonName = document.getElementById("current-player-name");
 const playerPokemonSprite = document.getElementById("player-pokemon-sprite");
 const playerPokemonBaseHP = document.getElementById("player-base-hp");
 const playerPokemonRemainingHP = document.getElementById("current-player-hp-actual");
+const playerHealthBar = document.getElementById("player-green-bar");
 
 
 
@@ -185,6 +186,7 @@ function fetchPlayerPokemon(pokemonName) {
                     let hit = "(Hit)";
                     let miss = "(Miss)";
                     let enemyHealthPercentage;
+                    let playerHealthPercentage;
 
                     
                     // the better the move, the worse the acc
@@ -243,10 +245,12 @@ function fetchPlayerPokemon(pokemonName) {
                     enemyPokemonRemainingHP.textContent = 49 - damageDoneTotal;
                     playerPokemonRemainingHP.textContent = 63 - damageTakenTotal;
                     
+                    // Update health bars (starting at width:100%)
                     enemyHealthPercentage = 100 - ((damageDoneTotal/49)*100);
-                    
                     enemyHealthBar.style.width = `${enemyHealthPercentage}%`;
-                    console.log(enemyHealthPercentage);
+                    playerHealthPercentage = 100 - ((damageTakenTotal/63)*100);
+                    playerHealthBar.style.width = `${playerHealthPercentage}%`;
+
 
                     showDynamicText(`You used ${move}`);
                     leftSideTextBox.innerHTML = '';
