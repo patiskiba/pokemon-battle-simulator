@@ -156,6 +156,12 @@ function fetchPlayerPokemon(pokemonName) {
         // Default dynamic text
         showDynamicText(`What will ${pokemonName.replace(/^./, name[0].toUpperCase())} do?`);
 
+        //Show accuracy of moves when pokemon button clicked
+        pokemonButton.addEventListener("click", () => {
+            showDynamicText("Piplup is a water type pokemon with 3 moves: pound(80%), water gun(50%), ice beam(100%).");
+        });
+
+
         // Show your moveset when fight button clicked
         let damageDoneTotal = 0; 
         let damageTakenTotal = 0;

@@ -9,6 +9,9 @@ header {
     font-family: "Pixelify Sans", Arial, Helvetica, sans-serif;
 }
 
+a {
+    text-decoration: none;
+}
 
 /* aspect ratio: (5:3) */
 #game-container {
