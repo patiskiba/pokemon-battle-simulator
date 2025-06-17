@@ -6,6 +6,7 @@ body {
 header {
     text-align: center;
     color: rgb(223, 221, 255);
+    font-family: "Pixelify Sans", Arial, Helvetica, sans-serif;
 }
 
 
@@ -213,5 +214,6 @@ header {
 
 #gameResult {
     text-align: center;
+    font-family: "Pixelify Sans", Arial, Helvetica, sans-serif;
     color: white;
 }

@@ -256,12 +256,12 @@ function fetchPlayerPokemon(pokemonName) {
                     // Win/loss conditions
                     if (damageDoneTotal >= 49) {
                         if (damageTakenTotal >= 63) {
-                            gameResultText.textContent = "Your Piplup has fainted... You lose! :(";
+                            gameResultText.textContent = "Your Piplup has fainted... You lose!";
                         } else {
-                            gameResultText.textContent = "Enemy Charmander has fainted... You win! :)";
+                            gameResultText.textContent = "Enemy Charmander has fainted... You win!";
                         }
                     } else if (damageTakenTotal >= 63) {
-                        gameResultText.textContent = "Your Piplup has fainted... You lose! :(";
+                        gameResultText.textContent = "Your Piplup has fainted... You lose!";
                     }
                     
 
