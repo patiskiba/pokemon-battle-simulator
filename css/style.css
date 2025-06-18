@@ -220,3 +220,25 @@ a {
     font-family: "Pixelify Sans", Arial, Helvetica, sans-serif;
     color: white;
 }
+
+/* Responsiveness */
+@media only screen and (max-width: 900px) {
+    #game-container {
+        width: 500px;
+        height: 600px;
+    }
+    #menu-container {
+        height: fit-content;
+        bottom: 140px;
+    }
+    .menu-right-side {
+        
+        left: 60px;
+    }
+    .battlefieldSide {
+        flex-direction: column;
+    }
+    .pokemonSpriteContainer {
+        display: none;
+    }
+}
